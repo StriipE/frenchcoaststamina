@@ -12,7 +12,6 @@ var mysql = require("mysql");
 // Get Homepage
 router.get('/player/:uid', function (req,res) {
     // Mysql connection
-    console.log(process.env.FCS2_DBHOST);
 
     var con = mysql.createConnection({
         host: process.env.FCS2_DBHOST,
@@ -35,7 +34,7 @@ router.get('/player/:uid', function (req,res) {
     'WHERE u.PlayerId = ? ORDER BY s.SongID;', req.params.uid, function(err,rows){
         if(err) throw err;
 
-        console.log(rows);
+      //  console.log(rows);
         res.render('playercard',{
             rows: rows
         });
