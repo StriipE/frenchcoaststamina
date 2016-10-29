@@ -1,3 +1,26 @@
 .header-content-inner a {
     margin-top : 175px;
 }
+
+@font-face {
+    font-family: "Legacy";
+    src: url('../fonts/Legacy_new.ttf');
+}
+.playercard {
+    width: 1000px;
+    height: 694px;
+    font-family: "Legacy", Helvetica, Arial, sans-serif;
+    font-style: normal;
+    font-size: 25px;
+    background-image: url('../img/playercard_bg.png');
+    margin: 10px;
+    padding: 15px 10px;
+}
+
+.playername {
+    margin: 70px 0 20px 20px;
+}
+
+#mainNav {
+    background-color: #3F3F3F;
+}

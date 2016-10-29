@@ -1,8 +1,11 @@
 var express = require('express');
 var path = require('path');
 var exphbs = require('express-handlebars');
-var routes = require('./routes/index');
 
+var routes = require('./routes/index');
+var playercards = require('./routes/playercard');
+
+require('dotenv').config();
 // Init App
 var app = express();
 
@@ -21,3 +24,4 @@ var server = app.listen(process.env.PORT || 8080, function () {
 });
 
 app.use('/', routes);
+app.use('/playercard', playercards);

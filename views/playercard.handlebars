@@ -1,0 +1,9 @@
+{{#if rows}}
+<div class="playername"> <h2>Scores for {{rows.0.Username}}</h2></div>
+
+<div class='playercard'>
+    {{#each rows}}
+        <div>{{Name}} | {{score}}%</div></br>
+    {{/each}}
+{{/if}}
+</div>
