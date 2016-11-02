@@ -4,6 +4,7 @@ var exphbs = require('express-handlebars');
 
 var routes = require('./routes/index');
 var playercards = require('./routes/playercard');
+var rankings = require('./routes/ranking');
 
 require('dotenv').config();
 // Init App
@@ -25,3 +26,4 @@ var server = app.listen(process.env.PORT || 8080, function () {
 
 app.use('/', routes);
 app.use('/playercard', playercards);
+app.use('/rankings', rankings);
