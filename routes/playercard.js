@@ -28,9 +28,9 @@ router.get('/player/:uid', function (req,res) {
         console.log('Connected to DB');
     });
 
-    con.query('SELECT u.Name as Username, s.Name, score FROM score ' +
-    'INNER JOIN user AS u ON u.PlayerID = score.PlayerID ' +
-    'INNER JOIN songs AS s ON s.SongID = score.SongID ' +
+    con.query('SELECT u.Name as Username, s.Name, score FROM score_histo ' +
+    'INNER JOIN user AS u ON u.PlayerID = score_histo.PlayerID ' +
+    'INNER JOIN songs AS s ON s.SongID = score_histo.SongID ' +
     'WHERE u.PlayerId = ? ORDER BY s.SongID;', req.params.uid, function(err,rows){
         if(err) throw err;
 

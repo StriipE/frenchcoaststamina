@@ -24,3 +24,15 @@
 #mainNav {
     background-color: #3F3F3F;
 }
+
+.score-form {
+    margin: 70px 0 0 20px;
+}
+
+.form-control {
+    width:15%;
+}
+
+.btn {
+    background-color: #8e8e8e;
+}

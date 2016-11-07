@@ -1,14 +1,21 @@
 var express = require('express');
 var path = require('path');
 var exphbs = require('express-handlebars');
+var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var playercards = require('./routes/playercard');
 var rankings = require('./routes/ranking');
+var admin = require ('./routes/admin');
 
 require('dotenv').config();
 // Init App
 var app = express();
+
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+    extended: true
+}));
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -27,3 +34,4 @@ var server = app.listen(process.env.PORT || 8080, function () {
 app.use('/', routes);
 app.use('/playercard', playercards);
 app.use('/rankings', rankings);
+app.use('/admin', admin);
