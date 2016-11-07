@@ -11,16 +11,24 @@
     height: 694px;
     font-family: "Legacy", Helvetica, Arial, sans-serif;
     font-style: normal;
-    font-size: 25px;
+    font-size: 20px;
     background-image: url('../img/playercard_bg.png');
     margin: 10px;
-    padding: 15px 10px;
+    padding-top: 2px;
 }
 
+.playerscore {
+    padding: 6px 0 7px 10px;
+}
 .playername {
     margin: 70px 0 20px 20px;
 }
 
+.playername h2 {
+    font-family: "Legacy", Helvetica, Arial, sans-serif;
+    font-style: normal;
+    font-size: 40px;
+}
 #mainNav {
     background-color: #3F3F3F;
 }
@@ -34,5 +42,5 @@
 }
 
 .btn {
-    background-color: #8e8e8e;
+    background-color: #f47d02;
 }

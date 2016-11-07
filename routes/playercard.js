@@ -28,13 +28,15 @@ router.get('/player/:uid', function (req,res) {
         console.log('Connected to DB');
     });
 
-    con.query('SELECT u.Name as Username, s.Name, score FROM score_histo ' +
-    'INNER JOIN user AS u ON u.PlayerID = score_histo.PlayerID ' +
-    'INNER JOIN songs AS s ON s.SongID = score_histo.SongID ' +
-    'WHERE u.PlayerId = ? ORDER BY s.SongID;', req.params.uid, function(err,rows){
+    con.query('SELECT (SELECT user.Name FROM user WHERE user.PlayerID = ?) AS Username, songs.SongID, songs.Name, ' +
+        'score_histo.Score, score_histo.FCSPoints, difficulty.name AS Difficulty FROM scores_high ' +
+        'INNER JOIN songs ON scores_high.SongID = songs.SongID ' +
+        'INNER JOIN score_histo ON score_histo.ScoreID = scores_high.ScoreID ' +
+        'INNER JOIN difficulty ON  score_histo.DifficultyID = difficulty.id ' +
+        'WHERE scores_high.PlayerID = ? ' +
+        'ORDER BY songs.Name; ', [req.params.uid, req.params.uid] , function(err,rows){
         if(err) throw err;
 
-      //  console.log(rows);
         res.render('playercard',{
             rows: rows
         });

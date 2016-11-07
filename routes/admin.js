@@ -53,8 +53,18 @@ router.post('/addScore', function(req,res) {
 
         if (res.length == 0)
         {
-            var newRecord = { PlayerID : req.body.IDPlayer, SongID: req.body.IDSong, ScoreID: insertedID};
-            con.query("INSERT INTO scores_high SET ? ", newRecord, function(err,res){
+            for (var i = 1; i <= 10; i++)
+            {
+                var newRecord = { PlayerID : req.body.IDPlayer, SongID: i, ScoreID: 75}; // Null score hardcoded in base
+                con.query("INSERT INTO scores_high SET ? ", newRecord, function(err,res){
+                    if(err) throw err;
+                });
+            }
+
+            console.log("Created score histo for player");
+
+            con.query("UPDATE scores_high SET ScoreID = ? " +
+                "WHERE PlayerID = ? AND SongID  = ? ", [insertedID, req.body.IDPlayer, req.body.IDSong], function(err,res){
                 if(err) throw err;
 
                 console.log("New record !");
@@ -152,7 +162,7 @@ var FCSPointsCalc = function(songID, difficultyID, score) {
             break;
     }
 
-    var FCSPoints = (difficultyFactor * 9.09 * (score + (bpm - 100) / 5) ).toFixed(2);
+    var FCSPoints = (difficultyFactor * 9.09 * ((parseFloat(score) + parseFloat((bpm - 100) / 5)))).toFixed(2);
 
     return FCSPoints;
 }
@@ -169,4 +179,5 @@ var FCSPointsCalc = function(songID, difficultyID, score) {
         console.log(res);
     });
 } */
+
 module.exports = router;
