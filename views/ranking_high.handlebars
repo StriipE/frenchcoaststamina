@@ -1,1 +1,15 @@
-<div class="ranking-high"></div>
+<div class="ranking-high">
+    <h1>Player Rankings  -  High Tournament</h1>
+    {{#if rows}}
+    <table class='table_ranking_high'>
+        <tr>
+            <th>Player</th><th>Songs Played</th><th>FCS Points</th>
+        </tr>
+        {{#each rows}}
+            <tr>
+                <td>{{Name}}</td><td>{{Played}}</td><td>{{Score}}</td>
+            </tr>
+        {{/each}}
+    </table>
+    {{/if}}
+</div>
