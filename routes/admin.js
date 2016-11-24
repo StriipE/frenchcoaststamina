@@ -30,7 +30,7 @@ router.post('/addScore', function(req,res) {
 
     var FCSPoints = FCSPointsCalc(req.body.IDSong, req.body.IDDifficulty, req.body.Score);
 
-    var score_histo = { PlayerID : req.body.IDPlayer,
+    var score_high_histo = { PlayerID : req.body.IDPlayer,
                         SongID : req.body.IDSong,
                         DifficultyID: req.body.IDDifficulty,
                         Score: req.body.Score,
@@ -39,7 +39,7 @@ router.post('/addScore', function(req,res) {
 
     var insertedID = 0;
 
-    con.query('INSERT INTO score_histo SET ? ', score_histo , function(err,res){
+    con.query('INSERT INTO score_high_histo SET ? ', score_high_histo , function(err,res){
         if(err) throw err;
 
         console.log('Last insert ID:', res.insertId);
@@ -47,7 +47,7 @@ router.post('/addScore', function(req,res) {
         });
 
     con.query("SELECT SHID, FCSPoints FROM scores_high " +
-        "INNER JOIN score_histo on score_histo.ScoreID = scores_high.ScoreID " +
+        "INNER JOIN score_high_histo on score_high_histo.ScoreID = scores_high.ScoreID " +
         "WHERE scores_high.PlayerID = ? AND scores_high.SongID = ?", [req.body.IDPlayer, req.body.IDSong], function(err,res){
         if(err) throw err;
 
@@ -172,7 +172,7 @@ var FCSPointsCalc = function(songID, difficultyID, score) {
     var scoreData = { PlayerID : playerID, SongID: songID};
 
     con.query('SELECT FCSPoints FROM scores_high' +
-    'INNER JOIN score_histo on score_histo.ScoreID = scores_high.ScoreID' +
+    'INNER JOIN score_high_histo on score_high_histo.ScoreID = scores_high.ScoreID' +
     'WHERE scores_high.PlayerID = ? AND SongID = ?', scoreData, function(err,res){
         if(err) throw err;
 
