@@ -162,7 +162,7 @@ var FCSPointsCalc = function(songID, difficultyID, score) {
             break;
     }
 
-    var FCSPoints = (difficultyFactor * 9.09 * ((parseFloat(score) + parseFloat((bpm - 100) / 5)))).toFixed(2);
+    var FCSPoints = (difficultyFactor * (1000 / 110) * ((parseFloat(score) + parseFloat((bpm - 100) / 5)))).toFixed(2);
 
     return FCSPoints;
 }
