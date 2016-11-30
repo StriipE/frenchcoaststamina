@@ -90,7 +90,7 @@ router.post('/addScore', function(req,res) {
         {
             for (var i = 1; i <= 10; i++)
             {
-                var newRecord = { PlayerID : req.body.IDPlayer, SongID: i, ScoreID: 75}; // Null score hardcoded in base
+                var newRecord = { PlayerID : req.body.IDPlayer, SongID: i, ScoreID: 1}; // Null score hardcoded in base
                 con.query("INSERT INTO scores_high SET ? ", newRecord, function(err,res){
                     if(err) throw err;
                 });
