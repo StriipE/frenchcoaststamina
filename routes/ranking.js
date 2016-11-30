@@ -60,14 +60,15 @@ router.get('/low', function (req,res){
         console.log('Connected to DB');
     });
 
-    con.query('SELECT user.Name, COUNT(*) AS Played, ROUND(SUM(score_high_histo.FCSPoints),2) AS Score from scores_high ' +
-        'INNER JOIN score_high_histo ON score_high_histo.ScoreID = scores_high.ScoreID ' +
-        'INNER JOIN user ON user.PlayerID = scores_high.PlayerID ' +
-        'WHERE score_high_histo.ScoreID != 1 ' +
-        'GROUP BY scores_high.PlayerID ORDER BY Score DESC', function(err,rows){
+    con.query('SELECT user.Name, COUNT(*) AS Played, SUM(Fantastics) AS Fantastics, SUM(Excellents) AS Excellents, ' +
+        'SUM(Greats) AS Greats, SUM(FCSPoints) AS Score from scores_low ' +
+        'INNER JOIN score_low_optional_histo ON score_low_optional_histo.ScoreID = scores_low.ScoreID ' +
+        'INNER JOIN user ON user.PlayerID = scores_low.PlayerID ' +
+        'WHERE score_low_optional_histo.ScoreID != 1 ' +
+        'GROUP BY score_low_optional_histo.PlayerID ORDER BY Score DESC', function(err,rows){
         if(err) throw err;
 
-        res.render('ranking_high',{
+        res.render('ranking_low',{
             rows: rows
         });
     });
