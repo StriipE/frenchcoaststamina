@@ -10,7 +10,33 @@ var moment = require('moment');
 
 
 router.get('/addScore', function(req,res) {
-    res.render('add_score');
+    // Mysql connection
+    var con = mysql.createConnection({
+        host: process.env.FCS2_DBHOST,
+        user: process.env.FCS2_USER,
+        password: process.env.FCS2_DBPASS,
+        database: process.env.FCS2_DB
+    });
+
+    var songs;
+    var players;
+
+    con.query("SELECT PlayerID, Name FROM user", [], function(err,rows) {
+        if (err) throw err;
+
+
+        players = rows;
+        con.query("SELECT SongID, Name FROM songs WHERE SongID < 11", [], function(err,rows) {
+            if (err) throw err;
+
+            songs = rows;
+
+            res.render('add_score',{
+                players: players,
+                songs: songs
+            });
+        });
+    });
 });
 
 router.post('/addScore', function(req,res) {
@@ -31,6 +57,10 @@ router.post('/addScore', function(req,res) {
         console.log('Connected to DB');
     });
 
+    req.body.IDSong = parseInt(req.body.IDSong);
+    req.body.IDDifficulty = parseInt(req.body.IDDifficulty);
+    req.body.IDPlayer = parseInt(req.body.IDPlayer);
+
     var FCSPoints = FCSPointsCalc(req.body.IDSong, req.body.IDDifficulty, req.body.Score);
 
     var score_high_histo = { PlayerID : req.body.IDPlayer,
@@ -39,6 +69,8 @@ router.post('/addScore', function(req,res) {
                         Score: req.body.Score,
                         scoredOn: moment().format('YYYY-MM-DD HH:mm:ss'),
                         FCSPoints : FCSPoints };
+
+    console.log(score_high_histo);
 
     var insertedID = 0;
 
@@ -88,17 +120,7 @@ router.post('/addScore', function(req,res) {
     });
 
     res.redirect('/admin/addScore');
-    //updateRankings(req.body.IDPlayer, req.body.IDSong, FCSPoints);
 
-    /*con.end(function (err) {
-        if(err){
-            console.log('Error while closing the connection');
-            return;
-        }
-        console.log('Successfully disconnected to DB');
-
-
-    });  */
 });
 
 /* Used to calculate FCS Points */
@@ -108,19 +130,19 @@ var FCSPointsCalc = function(songID, difficultyID, score) {
 
     switch (difficultyID)
     {
-        case '1':
+        case 1:
             difficultyFactor = 0.4;
             break;
-        case '2':
+        case 2:
             difficultyFactor = 0.5;
             break;
-        case '3':
+        case 3:
             difficultyFactor = 0.65;
             break;
-        case '4':
+        case 4:
             difficultyFactor = 0.8;
             break;
-        case '5':
+        case 5:
             difficultyFactor = 1.0;
             break;
         default:
@@ -130,34 +152,34 @@ var FCSPointsCalc = function(songID, difficultyID, score) {
 
     switch (songID)
     {
-        case '1':
+        case 1:
             bpm = 150;
             break;
-        case '2':
+        case 2:
             bpm = 160;
             break;
-        case '3':
+        case 3:
             bpm = 170;
             break;
-        case '4':
+        case 4:
             bpm = 174;
             break;
-        case '5':
+        case 5:
             bpm = 180;
             break;
-        case '6':
+        case 6:
             bpm = 190;
             break;
-        case '7':
+        case 7:
             bpm = 195;
             break;
-        case '8':
+        case 8:
             bpm = 200;
             break;
-        case '9':
+        case 9:
             bpm = 210;
             break;
-        case '10':
+        case 10:
             bpm = 220;
             break;
         default :
@@ -170,23 +192,36 @@ var FCSPointsCalc = function(songID, difficultyID, score) {
     return FCSPoints;
 }
 
-/* var updateRankings = function(playerID, songID, FCSPoints) {
-
-    var scoreData = { PlayerID : playerID, SongID: songID};
-
-    con.query('SELECT FCSPoints FROM scores_high' +
-    'INNER JOIN score_high_histo on score_high_histo.ScoreID = scores_high.ScoreID' +
-    'WHERE scores_high.PlayerID = ? AND SongID = ?', scoreData, function(err,res){
-        if(err) throw err;
-
-        console.log(res);
-    });
-} */
-
 module.exports = router;
 
 router.get('/addScoreLow', function(req,res) {
-    res.render('add_score_low');
+    // Mysql connection
+    var con = mysql.createConnection({
+        host: process.env.FCS2_DBHOST,
+        user: process.env.FCS2_USER,
+        password: process.env.FCS2_DBPASS,
+        database: process.env.FCS2_DB
+    });
+
+    var songs;
+    var players;
+
+    con.query("SELECT PlayerID, Name FROM user", [], function(err,rows) {
+        if (err) throw err;
+
+
+        players = rows;
+        con.query("SELECT SongID, Name FROM songs WHERE SongID > 10 AND SongID < 41", [], function(err,rows) {
+            if (err) throw err;
+
+            songs = rows;
+
+            res.render('add_score_low',{
+                players: players,
+                songs: songs
+            });
+        });
+    });
 });
 
 router.post(('/addScoreLow'), function(req,res) {
@@ -207,6 +242,9 @@ router.post(('/addScoreLow'), function(req,res) {
         console.log('Connected to DB');
     });
 
+    req.body.IDPlayer = parseInt(req.body.IDPlayer);
+    req.body.IDSong = parseInt(req.body.IDSong);
+
     var FCSLowPoints = FCSLowPointsCalc(req.body.Fantastics, req.body.Excellents, req.body.Greats);
 
     var score_low_optional_histo = { PlayerID : req.body.IDPlayer,
@@ -215,6 +253,7 @@ router.post(('/addScoreLow'), function(req,res) {
         Excellents: req.body.Excellents,
         Greats: req.body.Greats,
         scoredOn: moment().format('YYYY-MM-DD HH:mm:ss'),
+        DifficultyID: 5,
         FCSPoints : FCSLowPoints };
 
     var insertedID = 0;

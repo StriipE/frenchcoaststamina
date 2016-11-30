@@ -3,11 +3,19 @@
     <form method="post" action="/admin/addScoreLow">
         <div class="form-group">
             <label>ID Player</label>
-            <input type="text" class="form-control" placeholder="IDPlayer" name="IDPlayer">
+            <select type="text" class="selectpicker" name="IDPlayer" data-live-search="true">
+                {{#each players}}
+                    <option>{{PlayerID}} - {{Name}}</option>
+                {{/each}}
+            </select>
         </div>
         <div class="form-group">
             <label>ID Song</label>
-            <input type="text" class="form-control" placeholder="IDSong" name="IDSong">
+            <select type="text" class="selectpicker" name="IDSong" data-live-search="true">
+                {{#each songs}}
+                    <option>{{SongID}} - {{Name}}</option>
+                {{/each}}
+            </select>
         </div>
         <div class="form-group">
             <label>Fantastics</label>

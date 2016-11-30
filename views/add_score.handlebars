@@ -3,15 +3,29 @@
         <form method="post" action="/admin/addScore">
             <div class="form-group">
                 <label>ID Player</label>
-                <input type="text" class="form-control" placeholder="IDPlayer" name="IDPlayer">
+                <select type="text" class="selectpicker" name="IDPlayer" data-live-search="true">
+                {{#each players}}
+                    <option>{{PlayerID}} - {{Name}}</option>
+                {{/each}}
+                </select>
             </div>
             <div class="form-group">
                 <label>ID Song</label>
-                <input type="text" class="form-control" placeholder="IDSong" name="IDSong">
+                <select type="text" class="selectpicker" name="IDSong" data-live-search="true">
+                    {{#each songs}}
+                        <option>{{SongID}} - {{Name}}</option>
+                    {{/each}}
+                </select>
             </div>
             <div class="form-group">
                 <label>ID Difficulty</label>
-                <input type="text" class="form-control" placeholder="IDDifficulty" name="IDDifficulty">
+                <select type="text" class="selectpicker" name="IDDifficulty" data-live-search="true">
+                        <option>1 - Novice</option>
+                        <option>2 - Easy</option>
+                        <option>3 - Medium</option>
+                        <option>4 - Hard</option>
+                        <option>5 - Expert</option>
+                </select>
             </div>
             <div class="form-group">
                 <label>Score</label>
@@ -19,4 +33,8 @@
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
+
+       <script>
+           $('.selectpicker').selectpicker();
+       </script>
 </div>
