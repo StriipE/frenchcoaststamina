@@ -6,6 +6,9 @@ var router = express.Router();
 var mysql = require("mysql");
 var moment = require('moment');
 
+
+
+
 router.get('/addScore', function(req,res) {
     res.render('add_score');
 });
@@ -35,7 +38,7 @@ router.post('/addScore', function(req,res) {
                         DifficultyID: req.body.IDDifficulty,
                         Score: req.body.Score,
                         scoredOn: moment().format('YYYY-MM-DD HH:mm:ss'),
-                        FCSPoints : FCSPoints};
+                        FCSPoints : FCSPoints };
 
     var insertedID = 0;
 
@@ -181,3 +184,96 @@ var FCSPointsCalc = function(songID, difficultyID, score) {
 } */
 
 module.exports = router;
+
+router.get('/addScoreLow', function(req,res) {
+    res.render('add_score_low');
+});
+
+router.post(('/addScoreLow'), function(req,res) {
+
+    // Mysql connection
+    var con = mysql.createConnection({
+        host: process.env.FCS2_DBHOST,
+        user: process.env.FCS2_USER,
+        password: process.env.FCS2_DBPASS,
+        database: process.env.FCS2_DB
+    });
+
+    con.connect(function (err) {
+        if(err){
+            console.log('Error connecting to DB');
+            return;
+        }
+        console.log('Connected to DB');
+    });
+
+    var FCSLowPoints = FCSLowPointsCalc(req.body.Fantastics, req.body.Excellents, req.body.Greats);
+
+    var score_low_optional_histo = { PlayerID : req.body.IDPlayer,
+        SongID : req.body.IDSong,
+        Fantastics: req.body.Fantastics,
+        Excellents: req.body.Excellents,
+        Greats: req.body.Greats,
+        scoredOn: moment().format('YYYY-MM-DD HH:mm:ss'),
+        FCSPoints : FCSLowPoints };
+
+    var insertedID = 0;
+
+    con.query('INSERT INTO score_low_optional_histo SET ? ', score_low_optional_histo , function(err,res){
+        if(err) throw err;
+
+        console.log('Last insert ID:', res.insertId);
+        insertedID = parseInt(res.insertId);
+    });
+
+    var tempID = parseInt(req.body.IDSong) - ((parseInt(req.body.IDSong) - 11) % 3); // Used to find the 3 songs in the category
+    con.query("SELECT SLID, FCSPoints FROM scores_low " +
+        "INNER JOIN score_low_optional_histo on score_low_optional_histo.ScoreID = scores_low.ScoreID " +
+        "WHERE scores_low.PlayerID = ? AND (scores_low.SongID = ? OR scores_low.SongID = ? + 1 OR " +
+        "scores_low.SongID = ? + 2);", [req.body.IDPlayer, tempID, tempID, tempID], function(err,res){
+        if(err) throw err;
+
+        if (res.length == 0)
+        {
+            for (var i = 0; i < 10; i++)
+            {
+                var newRecord = { PlayerID : req.body.IDPlayer, SongID: 11 + 3 * i, ScoreID: 1}; // Null score hardcoded in base
+                con.query("INSERT INTO scores_low SET ? ", newRecord, function(err,res){
+                    if(err) throw err;
+                });
+            }
+
+            console.log("Created score histo for player");
+
+            con.query("UPDATE scores_low SET ScoreID = ? , SongID = ? " +
+                "WHERE PlayerID = ? AND (SongID = ? OR SongID = ? + 1 OR SongID = ? + 2)"
+                , [insertedID, req.body.IDSong, req.body.IDPlayer, tempID, tempID, tempID], function(err,res){
+                    if(err) throw err;
+
+                console.log("New record !");
+            });
+        }
+        else {
+            data = res[0];
+
+            if(data.FCSPoints < FCSLowPoints)
+            {
+                con.query("UPDATE scores_low SET ScoreID = ? , SongID = ? " +
+                    "WHERE PlayerID = ? AND (SongID = ? OR SongID = ? + 1 OR SongID = ? + 2)"
+                    , [insertedID, req.body.IDSong, req.body.IDPlayer, tempID, tempID, tempID], function(err,res){
+                    if(err) throw err;
+
+                    console.log("New record update !");
+                });
+            }
+        }
+    });
+
+    res.redirect('/admin/addScoreLow');
+})
+
+function FCSLowPointsCalc(fantastics, excellents, greats)
+{
+    var points = (3 * parseInt(fantastics))  + (2 * parseInt(excellents)) + parseInt(greats);
+    return points;
+}
