@@ -109,7 +109,7 @@ td.table_greats {
     background-color: #890000;
 }
 
-.separatorTest {
+.separator {
     padding: 2px 0;
 }
 
@@ -117,9 +117,12 @@ td.table_greats {
     background-color: #890000;
 }
 
-.odd-title h2{
+.odd-title h2, .even-title h2{
     font-size: 40px;
     padding-bottom: 25px;
+}
+.even-title h2 {
+    text-align: right;
 }
 
 .no-bullet-list-odd {
@@ -135,4 +138,13 @@ td.table_greats {
 
 .bullet-list-odd {
     margin: 30px 0;
+}
+
+.prizes-paragraph {
+    padding: 10px 0;
+}
+
+.prizes-h3 {
+    padding: 20px 0;
+    font-size: 35px;
 }
