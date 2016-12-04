@@ -42,7 +42,7 @@
 }
 
 .btn {
-    background-color: #f47d02;
+    background-color: #890000;
 }
 
 .ranking-high, .ranking-low {
@@ -122,10 +122,6 @@ td.table_greats {
     padding: 2px 0;
 }
 
-.btn {
-    background-color: #890000;
-}
-
 .odd-title h2, .even-title h2{
     font-size: 40px;
     padding-bottom: 25px;
@@ -138,14 +134,18 @@ td.table_greats {
     padding-left: 0;
 }
 
-.list-line, .list-line-participation, .list-line-signup {
+.list-line, .list-line-participation, .list-line-signup, .list-line-whoIsRems {
     font-size: 15px;
     list-style-type: none;
-    padding: 5px 0;
+    padding: 10px 0;
     display: block;
 }
 
-.bullet-list-odd, .bullet-list-odd-participation {
+.list-line a {
+    font-color: #da0000;
+}
+
+.bullet-list-odd, .bullet-list-odd-participation, .bullet-list-even-whoIsRems {
     margin: 30px 0;
 }
 
@@ -162,4 +162,22 @@ td.table_greats {
     font-size: 40px;
     padding: 200px 0;
     text-align: center;
+}
+
+.stepchart-table {
+    color: #ddd;
+    margin: 40px 0;
+}
+
+.stepchart-table th, .stepchart-table td {
+    padding: 5px 10px;
+}
+
+.table-head th {
+    padding-bottom: 20px;
+}
+
+.credits-paragraph {
+    font-size: 22px;
+    padding: 50px 0;
 }

@@ -37,3 +37,15 @@ sr.reveal('.list-line-signup', listLineSignUpOptions, 1000);
 
 var isThisECSParagraphOptions = { delay : 1000, duration: 1000, origin: 'right'}
 sr.reveal('.isthisecs-paragraph', isThisECSParagraphOptions, 1000);
+
+var listLineWhoIsRemsOptions = { delay : 1000, duration: 1000, origin: 'left'}
+sr.reveal('.list-line-whoIsRems', listLineWhoIsRemsOptions, 2000);
+
+var stepchartTableOptions = { delay : 500, duration: 250, origin: 'bottom'}
+sr.reveal('.stepchart-table', stepchartTableOptions);
+
+var tableHeaderOptions = { delay : 500, duration: 250, origin: 'right', reset:'true'}
+sr.reveal('.table-header',tableHeaderOptions);
+
+var creditsParagraphOptions = { duration : 1000, origin: 'bottom'}
+sr.reveal('.credits-paragraph', creditsParagraphOptions);
