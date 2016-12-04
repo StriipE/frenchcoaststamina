@@ -96,3 +96,43 @@ td.table_excellents {
 td.table_greats {
     background-color: #c0ffc3;
 }
+
+.oddIndexPage {
+    padding: 100px 0;
+    color: #dadada;
+    background-color: #272754;
+}
+
+.evenIndexPage {
+    padding: 100px 0;
+    color: #dadada;
+    background-color: #890000;
+}
+
+.separatorTest {
+    padding: 2px 0;
+}
+
+.btn {
+    background-color: #890000;
+}
+
+.odd-title h2{
+    font-size: 40px;
+    padding-bottom: 25px;
+}
+
+.no-bullet-list-odd {
+    padding-left: 0;
+}
+
+.list-line {
+    font-size: 15px;
+    list-style-type: none;
+    padding: 5px 0;
+    display: block;
+}
+
+.bullet-list-odd {
+    margin: 30px 0;
+}
