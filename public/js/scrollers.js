@@ -25,3 +25,15 @@ sr.reveal('.prizes-paragraph', prizesParagraphOptions, 1000);
 
 var prizesHTOptions = { delay: 3000, duration: 500, origin: 'left'}
 sr.reveal('.prizes-h3', prizesHTOptions);
+
+var listLineParticipationOptions = { delay: 1000, duration: 1000, origin: 'right'}
+sr.reveal('.list-line-participation',listLineParticipationOptions, 1000);
+
+var participationParagraphOptions = { delay: 4000, duration: 1000, origin: 'right'}
+sr.reveal('.participation-paragraph', participationParagraphOptions);
+
+var listLineSignUpOptions = { delay: 1000, duration: 1000, origin: 'left'}
+sr.reveal('.list-line-signup', listLineSignUpOptions, 1000);
+
+var isThisECSParagraphOptions = { delay : 1000, duration: 1000, origin: 'right'}
+sr.reveal('.isthisecs-paragraph', isThisECSParagraphOptions, 1000);

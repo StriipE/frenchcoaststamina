@@ -129,22 +129,28 @@ td.table_greats {
     padding-left: 0;
 }
 
-.list-line {
+.list-line, .list-line-participation, .list-line-signup {
     font-size: 15px;
     list-style-type: none;
     padding: 5px 0;
     display: block;
 }
 
-.bullet-list-odd {
+.bullet-list-odd, .bullet-list-odd-participation {
     margin: 30px 0;
 }
 
-.prizes-paragraph {
+.prizes-paragraph, .participation-paragraph, .isthisecs-paragraph {
     padding: 10px 0;
 }
 
 .prizes-h3 {
     padding: 20px 0;
     font-size: 35px;
+}
+
+.special-thanks {
+    font-size: 40px;
+    padding: 200px 0;
+    text-align: center;
 }
