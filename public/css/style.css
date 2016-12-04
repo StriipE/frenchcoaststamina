@@ -97,10 +97,19 @@ td.table_greats {
     background-color: #c0ffc3;
 }
 
-.oddIndexPage {
-    padding: 100px 0;
+.odd-container {
     color: #dadada;
     background-color: #272754;
+    width: 100%;
+}
+.oddIndexPage {
+    padding: 100px 0;
+}
+
+.even-container {
+    color: #dadada;
+    background-color: #890000;
+    width: 100%;
 }
 
 .evenIndexPage {
