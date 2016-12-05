@@ -3,11 +3,11 @@
     {{#if rows}}
         <table class='table_ranking_low'>
             <tr>
-                <th>Player</th><th>Country</th><th>Songs Played</th><th>FCS Points</th><th>Fantastics</th><th>Excellents</th><th>Greats</th>
+                <th>Rank</th><th>Player</th><th>Country</th><th>Songs Played</th><th>FCS Points</th><th>Fantastics</th><th>Excellents</th><th>Greats</th>
             </tr>
             {{#each rows}}
                 <tr>
-                    <td>{{Name}}</td><td>{{CountryCode}}</td><td>{{Played}}</td><td>{{Score}}</td><td class="table_fantastics">{{Fantastics}}</td>
+                    <td>#{{Rank}}</td><td>{{Name}}</td><td>{{CountryCode}}</td><td>{{Played}}</td><td>{{Score}}</td><td class="table_fantastics">{{Fantastics}}</td>
                     <td class="table_excellents">{{Excellents}}</td><td class="table_greats">{{Greats}}</td>
                 </tr>
             {{/each}}

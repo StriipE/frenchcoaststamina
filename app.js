@@ -9,6 +9,7 @@ var rankings = require('./routes/ranking');
 var admin = require('./routes/admin');
 var credits = require('./routes/credits');
 var rules = require('./routes/rules');
+var downloads = require('./routes/downloads');
 
 require('dotenv').config();
 // Init App
@@ -39,3 +40,4 @@ app.use('/rankings', rankings);
 //app.use('/admin', admin);
 app.use('/credits', credits);
 app.use('/rules', rules);
+app.use('/downloads', downloads);

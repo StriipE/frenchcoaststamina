@@ -29,8 +29,15 @@ router.get('/high', function (req,res){
               'GROUP BY scores_high.PlayerID ORDER BY Score DESC', function(err,rows){
         if(err) throw err;
 
+        var rank = 1;
+        var newRows = rows;
+        for (row in newRows) {
+            newRows[row]['Rank'] = rank;
+            rank++;
+        }
+
         res.render('ranking_high',{
-            rows: rows
+            rows: newRows
         });
     });
 
@@ -68,8 +75,15 @@ router.get('/low', function (req,res){
         'GROUP BY score_low_optional_histo.PlayerID ORDER BY Score DESC', function(err,rows){
         if(err) throw err;
 
+        var rank = 1;
+        var newRows = rows;
+        for (row in newRows) {
+            newRows[row]['Rank'] = rank;
+            rank++;
+        }
+
         res.render('ranking_low',{
-            rows: rows
+            rows: newRows
         });
     });
 
