@@ -46,12 +46,12 @@
 }
 
 .ranking-high, .ranking-low {
-    font-family: "Legacy", Helvetica, Arial, sans-serif;
+    font-family:  'Tahoma', Geneva, sans-serif;
     padding: 80px;
 }
 
 .ranking-high h1, .ranking-low h1 {
-    font-family: "Legacy", Helvetica, Arial, sans-serif;
+    font-family: 'Tahoma', Geneva, sans-serif;
     padding-bottom: 25px;
     font-style: normal;
     font-size: 45px;
@@ -212,4 +212,20 @@ td.table_greats {
     font-weight: 700;
     font-size: 13px;
     color: rgba(255,255,255,.7);
+}
+
+.blue-link {
+    color: #414182;
+}
+
+.blue-link:hover {
+    color: #6262B4;
+}
+
+#index-main-button {
+    margin-top: 300px;
+}
+
+.btn-default {
+    color: #FFFFFF;
 }

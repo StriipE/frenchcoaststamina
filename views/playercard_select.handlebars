@@ -1,0 +1,20 @@
+ <div class="score-form">
+        <h2>Select your playercard</h2>
+        <form method="post" action="/playercard/cardrouter">
+
+            <div class="form-group">
+                <label>Player Name</label>
+                <select type="text" class="selectpicker" name="IDPlayer" data-live-search="true">
+                {{#each players}}
+                    <option>{{PlayerID}} - {{Name}}</option>
+                {{/each}}
+                </select>
+            </div>
+
+       <button type="submit" class="btn btn-default">Find my playercard</button>
+       </form>
+
+       <script>
+           $('.selectpicker').selectpicker();
+       </script>
+</div>

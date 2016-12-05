@@ -8,7 +8,31 @@ var express = require('express');
 var router = express.Router();
 var mysql = require("mysql");
 
+router.get('/', function(req,res) {
 
+    // Mysql connection
+    var con = mysql.createConnection({
+        host: process.env.FCS2_DBHOST,
+        user: process.env.FCS2_USER,
+        password: process.env.FCS2_DBPASS,
+        database: process.env.FCS2_DB
+    });
+
+    var players;
+
+    con.query("SELECT PlayerID, Name FROM user", [], function(err,rows) {
+        if (err) throw err;
+
+        players = rows;
+        res.render('playercard_select', { players: players });
+    });
+});
+
+router.post('/cardrouter', function (req,res) {
+
+    res.redirect('/playercard/player/' + parseInt(req.body.IDPlayer));
+
+});
 // Get Homepage
 router.get('/player/:uid', function (req,res) {
     // Mysql connection
