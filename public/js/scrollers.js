@@ -65,5 +65,8 @@ sr.reveal('.odd-paragraph-low-div', oddParagraphLowDivOptions, 500);
 var optionalDivisionRulesParagraphOptions = { delay : 500, duration: 500, origin: 'left'}
 sr.reveal('.optional_division_rules_paragraph', optionalDivisionRulesParagraphOptions, 500);
 
+var generalRulesParagraphOptions =  { duration: 500, origin: 'right'}
+sr.reveal('.general-rule-paragraph', generalRulesParagraphOptions, 500);
+
 var downloadParagraphOptions = { duration: 500, origin: 'right'}
 sr.reveal('.download-paragraph', downloadParagraphOptions, 500);
