@@ -8,6 +8,7 @@ var playercards = require('./routes/playercard');
 var rankings = require('./routes/ranking');
 var admin = require('./routes/admin');
 var credits = require('./routes/credits');
+var rules = require('./routes/rules');
 
 require('dotenv').config();
 // Init App
@@ -35,5 +36,6 @@ var server = app.listen(process.env.PORT || 8080, function () {
 app.use('/', routes);
 app.use('/playercard', playercards);
 app.use('/rankings', rankings);
-app.use('/admin', admin);
+//app.use('/admin', admin);
 app.use('/credits', credits);
+app.use('/rules', rules);

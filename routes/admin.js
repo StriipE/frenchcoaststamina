@@ -1,6 +1,8 @@
-/**
+/*
+
+/!**
  * Created by auffr on 06/11/2016.
- */
+ *!/
 var express = require('express');
 var router = express.Router();
 var mysql = require("mysql");
@@ -123,7 +125,7 @@ router.post('/addScore', function(req,res) {
 
 });
 
-/* Used to calculate FCS Points */
+/!* Used to calculate FCS Points *!/
 var FCSPointsCalc = function(songID, difficultyID, score) {
 
     var difficultyFactor = 0, bpm = 0;
@@ -315,4 +317,4 @@ function FCSLowPointsCalc(fantastics, excellents, greats)
 {
     var points = (3 * parseInt(fantastics))  + (2 * parseInt(excellents)) + parseInt(greats);
     return points;
-}
+}*/

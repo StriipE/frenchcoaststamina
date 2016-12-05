@@ -49,3 +49,18 @@ sr.reveal('.table-header',tableHeaderOptions);
 
 var creditsParagraphOptions = { duration : 500, origin: 'bottom'}
 sr.reveal('.credits-paragraph', creditsParagraphOptions);
+
+var highDivisionRulesParagraphOptions = { duration : 500, origin: 'left'}
+sr.reveal('.high_division_rules_paragraph', highDivisionRulesParagraphOptions, 500);
+
+var listLineDiffAdjOptions = { delay: 1000, duration: 200, origin: 'left'}
+sr.reveal('.list-line-diff-adj', listLineDiffAdjOptions, 100);
+
+var listLineScoreExampleOptions = { delay: 1000, duration: 200, origin: 'left'}
+sr.reveal('.list-line-score-example', listLineScoreExampleOptions, 100);
+
+var oddParagraphLowDivOptions = { delay : 500, duration: 500, origin: 'right'}
+sr.reveal('.odd-paragraph-low-div', oddParagraphLowDivOptions, 500);
+
+var optionalDivisionRulesParagraphOptions = { delay : 500, duration: 500, origin: 'left'}
+sr.reveal('.optional_division_rules_paragraph', optionalDivisionRulesParagraphOptions, 500);
