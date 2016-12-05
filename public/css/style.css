@@ -216,11 +216,11 @@ td.table_greats {
 }
 
 .blue-link {
-    color: #414182;
+    color: #ffed1a;
 }
 
 .blue-link:hover {
-    color: #6262B4;
+    color: #ffae1a;
 }
 
 #index-main-button {
@@ -229,4 +229,8 @@ td.table_greats {
 
 .btn-default {
     color: #FFFFFF;
+}
+
+.bullet-list-odd {
+    font-size: 16px;
 }
