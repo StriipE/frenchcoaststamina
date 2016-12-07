@@ -68,6 +68,13 @@
     border-top-style: solid;
     border-top-width: 1px;
 }
+.playercard-link {
+    text-align: center;
+}
+
+.playercard-link i {
+    font-size: 30px;
+}
 
 .table_ranking_high th, .table_ranking_low th {
     background-color: #fff0ba;

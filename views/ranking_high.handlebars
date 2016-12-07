@@ -3,11 +3,12 @@
     {{#if rows}}
     <table class='table_ranking_high'>
         <tr>
-            <th>Rank</th><th>Player</th><th>Country</th><th>Songs Played</th><th>FCS Points</th>
+            <th>Rank</th><th>Player</th><th>Country</th><th>Songs Played</th><th>FCS Points</th><th>Go to Playercard</th>
         </tr>
         {{#each rows}}
             <tr>
                 <td>#{{Rank}}</td><td>{{Name}}</td><td>{{CountryCode}}</td><td>{{Played}}</td><td>{{Score}}</td>
+                <td class="playercard-link"><a href="/playercard/player/{{PlayerID}}"><i class="fa fa-caret-square-o-right"></i></a></td>
             </tr>
         {{/each}}
     </table>

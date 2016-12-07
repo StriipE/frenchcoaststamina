@@ -5,18 +5,10 @@
  * Created by auffr on 24/10/2016.
  */
 var express = require('express');
+var con = require('../config/mysqlconf');
 var router = express.Router();
-var mysql = require("mysql");
 
 router.get('/', function(req,res) {
-
-    // Mysql connection
-    var con = mysql.createConnection({
-        host: process.env.FCS2_DBHOST,
-        user: process.env.FCS2_USER,
-        password: process.env.FCS2_DBPASS,
-        database: process.env.FCS2_DB
-    });
 
     var players;
 
@@ -35,22 +27,6 @@ router.post('/cardrouter', function (req,res) {
 });
 // Get Homepage
 router.get('/player/:uid', function (req,res) {
-    // Mysql connection
-
-    var con = mysql.createConnection({
-        host: process.env.FCS2_DBHOST,
-        user: process.env.FCS2_USER,
-        password: process.env.FCS2_DBPASS,
-        database: process.env.FCS2_DB
-    });
-
-    con.connect(function (err) {
-        if(err){
-            console.log('Error connecting to DB');
-            return;
-        }
-        console.log('Connected to DB');
-    });
 
     con.query('SELECT (SELECT user.Name FROM user WHERE user.PlayerID = ?) AS Username, songs.SongID, songs.Name, ' +
         'score_high_histo.Score, score_high_histo.FCSPoints, difficulty.name AS Difficulty FROM scores_high ' +
@@ -66,13 +42,6 @@ router.get('/player/:uid', function (req,res) {
         });
     });
 
-    con.end(function (err) {
-        if(err){
-            console.log('Error while closing the connection');
-            return;
-        }
-        console.log('Successfully disconnected to DB');
-    });
 })
 
 module.exports = router;
