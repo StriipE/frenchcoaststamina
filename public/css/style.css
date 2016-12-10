@@ -18,7 +18,7 @@
 }
 
 .playerscore {
-    padding: 9px 0 7px 10px;
+    padding: 6px 0 7px 10px;
 }
 
 .playercard_low {
@@ -40,7 +40,7 @@
 }
 
 .no_score_msg_difficulty {
-    padding: 20px 15px;
+    padding: 20px 15px 21px 15px;
 }
 
 .bpm_130_low {
