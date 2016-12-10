@@ -30,7 +30,7 @@ router.get('/high', function (req,res){
 
 router.get('/low', function (req,res){
 
-    con.query('SELECT user.Name, user.CountryCode, COUNT(*) AS Played, SUM(Fantastics) AS Fantastics, SUM(Excellents) AS Excellents, ' +
+    con.query('SELECT user.PlayerID, user.Name, user.CountryCode, COUNT(*) AS Played, SUM(Fantastics) AS Fantastics, SUM(Excellents) AS Excellents, ' +
         'SUM(Greats) AS Greats, SUM(FCSPoints) AS Score from scores_low ' +
         'INNER JOIN score_low_optional_histo ON score_low_optional_histo.ScoreID = scores_low.ScoreID ' +
         'INNER JOIN user ON user.PlayerID = scores_low.PlayerID ' +

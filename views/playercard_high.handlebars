@@ -3,8 +3,12 @@
 
 <div class='playercard'>
     {{#each rows}}
-        <div class='playerscore'>{{Name}} | {{Score}}%</br>
+        {{#if FCSPoints}}
+        <div class='playerscore'>{{Name}} | {{Score}}%<br>
                                  Difficulty - {{Difficulty}} | FCS Points - {{FCSPoints}}</div>
+        {{else}}
+        <div class="no_score_msg_difficulty">No difficulties played for this song yet</div>
+        {{/if}}
     {{/each}}
 {{/if}}
 </div>

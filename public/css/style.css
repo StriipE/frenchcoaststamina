@@ -18,8 +18,81 @@
 }
 
 .playerscore {
+    padding: 9px 0 7px 10px;
+}
+
+.playercard_low {
+    font-family: "Legacy", Helvetica, Arial, sans-serif;
+    font-style: normal;
+    font-size: 20px;
+    margin: 10px;
+    padding-top: 2px;
+}
+
+.playerscore_low {
+    width: 1000px;
+    height: 69px;
     padding: 6px 0 7px 10px;
 }
+
+.no_score_msg {
+    padding: 15px 30px;
+}
+
+.no_score_msg_difficulty {
+    padding: 20px 15px;
+}
+
+.bpm_130_low {
+    background-image: url('../img/playercard_low_130.png');
+}
+
+.bpm_140_low {
+    background-image: url('../img/playercard_low_140.png');
+}
+
+.bpm_150_low {
+    background-image: url('../img/playercard_low_150.png');
+}
+
+.bpm_160_low {
+    background-image: url('../img/playercard_low_160.png');
+}
+
+.bpm_170_low {
+    background-image: url('../img/playercard_low_170.png');
+}
+
+.bpm_174_low {
+    background-image: url('../img/playercard_low_174.png');
+}
+
+.bpm_180_low {
+    background-image: url('../img/playercard_low_180.png');
+}
+
+.bpm_190_low {
+    background-image: url('../img/playercard_low_190.png');
+}
+
+.bpm_200_low {
+    background-image: url('../img/playercard_low_200.png');
+}
+
+.bpm_210_low {
+    background-image: url('../img/playercard_low_210.png');
+}
+
+.fa_marker {
+    display: inline-block;
+    background-color: transparent;
+    width: 16px;
+    height: 16px;
+    background-image: url('../img/small-blue-diamond.png');
+    background-repeat: repeat;
+
+}
+
 .playername {
     margin: 70px 0 20px 20px;
 }
