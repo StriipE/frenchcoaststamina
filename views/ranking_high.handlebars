@@ -7,7 +7,7 @@
         </tr>
         {{#each rows}}
             <tr>
-                <td>#{{Rank}}</td><td>{{Name}}</td><td>{{CountryCode}}</td><td>{{Played}}</td><td>{{Score}}</td>
+                <td>#{{Rank}}</td><td>{{Name}}</td><td><img src="/img/blank.png" class="flag flag-{{CountryFlag}}" alt="{{CountryName}}"></img>{{CountryCode}}</td><td>{{Played}}</td><td>{{Score}}</td>
                 <td class="playercard-link"><a href="/playercard/player/high/{{PlayerID}}"><i class="fa fa-caret-square-o-right"></i></a></td>
             </tr>
         {{/each}}
